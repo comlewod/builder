@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var app = require('../lib/app');
+var app = require('../build/dest/app');
 var http = require('http');
 
 //接受app的中间件处理，创建http服务
