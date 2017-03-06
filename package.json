@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"start": "node-dev ./bin/www",
+    "start": "node-dev ./bin/www",
     "restart": "node-dev ./lib/app.js"
   },
   "author": "",
@@ -16,5 +16,8 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6"
   }
 }
