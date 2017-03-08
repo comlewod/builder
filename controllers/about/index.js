@@ -1,9 +1,10 @@
-//import Express from 'express';
 var Express = require('express');
 
 var router = Express.Router();
+var index_path = ROOT_PATH + '/views/pages/about/index';
+
 router.get('/', function(req, res){
-	res.send('this is about page');
+	res.render(index_path);
 });
 
 module.exports = router;

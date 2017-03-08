@@ -18,6 +18,7 @@
     "webpack": "^1.14.0"
   },
   "dependencies": {
-    "ejs": "^2.5.6"
+    "ejs": "^2.5.6",
+    "express-ejs-layouts": "^2.2.0"
   }
 }
