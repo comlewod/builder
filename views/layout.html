@@ -3,10 +3,14 @@
 <head>
 </head>
 <body>
-	<div>这是头部</div>
+	<%- include('global/header/header.html') %>
+
+	<%- defineContent('nav') %>
 
 	<%- defineContent('content') %>
 
-	<div>这是尾部</div>
+	<%- defineContent('page') %>
+
+	<%- include('global/footer/footer.html') %>
 </body>
 </html>

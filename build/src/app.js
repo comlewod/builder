@@ -3,10 +3,12 @@ import Express from 'express';
 import ExpressLayout from 'express-ejs-layouts';
 import Config from './config';
 import Fs from 'fs';
+import Path from 'path';
 
 global.ROOT_PATH = process.cwd();
 
 var app = Express();
+
 //获取所有路由
 Fs.readdir(Config.controllers, function(err, files){
 	if( !files ){
@@ -20,8 +22,9 @@ Fs.readdir(Config.controllers, function(err, files){
 //页面渲染
 function makePages(){
 	//将html文件用ejs模板引擎解析
-	app.set('view engine', 'html');
 	app.engine('.html', require('ejs').__express);
+	app.set('views', Path.join(ROOT_PATH, 'views'));
+	app.set('view engine', 'html');
 	//使用layout，默认在view/layout
 	app.use(ExpressLayout);
 }
