@@ -1,8 +1,9 @@
-<%- contentFor('nav') %>
-<div>导航栏</div>
+{windget('nav', {name: 'comlewod'})}
 
 <%- contentFor('content') %>
 <h1>Index Page123123</h1>
 
 <%- contentFor('page') %>
 <p>页数</p>
+
+<%- include('page/page.html', {name: 'comlewod'}) %>

@@ -1,12 +1,12 @@
-import Path from 'path';
+import path from 'path';
 
 //根目录的绝对路径
-var root = Path.join(__dirname, '../..');
+var root = path.join(__dirname, '../..');
 
 var config = {
-	controllers: Path.join(root, 'controllers'),
-	views: Path.join(root, 'views'),
-	pages: Path.join(root, 'views', 'pages'),
+	controllers: path.join(root, 'controllers'),
+	views: path.join(root, 'views'),
+	pages: path.join(root, 'views', 'pages'),
 };
 
 module.exports = config;
