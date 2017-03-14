@@ -18,21 +18,29 @@ const express_obj = {
 //对静态资源处理的文件
 const task_obj = {
 	src: glob.sync(path.join(ROOT_PATH, 'task', 'src', '*.js')),
-	dest: glob.sync(path.join(ROOT_PATH, 'dest', 'src', '*.js')),
+	dest: path.join(ROOT_PATH, 'task', 'dest'),
 };
 
+//监控文件变化
+var all_files = express_obj.src.concat(task_obj.src);
+chokidar.watch(all_files, {}).on('all', (event, filepath) => {
+	console.log(filepath);
+	makeBabel(express_obj);
+	makeBabel(task_obj);
+});
+
 function makeBabel(obj){
-	const src = obj.src;
-	const dest = obj.dest;
+	var src = obj.src;
+	var dest = obj.dest;
 	//删除打包后的文件夹（包括里面的文件）
 	fs.removeSync(dest);
 	fs.ensureDirSync(dest);
 
 	src.forEach(filepath => {
 		//获取文件名
-		const file_name = path.relative(path.join(ROOT_PATH, 'build', 'src'), filepath);
+		var file_name = path.relative(path.join(dest, '..', 'src'), filepath);
 		//转化
-		const file_content = babel.transformFileSync(filepath, {
+		var file_content = babel.transformFileSync(filepath, {
 			//这里的编译信息要取自根目录的.babelrc或package.json的设定
 			presets: ['es2015'],
 		}).code;
@@ -40,11 +48,4 @@ function makeBabel(obj){
 	});
 }
 
-//监控文件变化
-var all_files = express_obj.src.concat(task_obj.src);
-/*chokidar.watch(all_files, {}).on('all', (event, filepath) => {
-	makeBabel(express_obj);
-	makeBabel(task_obj);
-});*/
-console.log(all_files);
 

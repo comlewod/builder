@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel-node ./transform/build",
     "start": "node-dev ./bin/www",
-    "restart": "node-dev ./lib/app.js"
+	"pack": "babel-node ./task/dest/index"
   },
   "author": "",
   "license": "ISC",
