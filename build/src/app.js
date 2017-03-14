@@ -7,7 +7,7 @@ import path from 'path';
 
 global.ROOT_PATH = process.cwd();
 
-var app = express();
+const app = express();
 
 //获取所有路由
 fs.readdir(config.controllers, function(err, files){

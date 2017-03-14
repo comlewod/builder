@@ -8,23 +8,32 @@ import chokidar from 'chokidar';
 //import babel from 'babel-core';
 const babel = require('babel-core');
 
-//任务文件
 const ROOT_PATH = process.cwd();
-//获取文件名数组
-const src_files = glob.sync(path.join(ROOT_PATH, 'build', 'src', '*.js'));
-const dest = path.join(ROOT_PATH, 'build', 'dest');
+//express服务文件
+const express_obj = {
+	src: glob.sync(path.join(ROOT_PATH, 'build', 'src', '*.js')),
+	dest: path.join(ROOT_PATH, 'build', 'dest'),
+};
 
-function makeBabel(){
+//对静态资源处理的文件
+const task_obj = {
+	src: glob.sync(path.join(ROOT_PATH, 'task', 'src', '*.js')),
+	dest: glob.sync(path.join(ROOT_PATH, 'dest', 'src', '*.js')),
+};
+
+function makeBabel(obj){
+	const src = obj.src;
+	const dest = obj.dest;
 	//删除打包后的文件夹（包括里面的文件）
 	fs.removeSync(dest);
 	fs.ensureDirSync(dest);
 
-	src_files.forEach(filepath => {
+	src.forEach(filepath => {
 		//获取文件名
 		const file_name = path.relative(path.join(ROOT_PATH, 'build', 'src'), filepath);
 		//转化
 		const file_content = babel.transformFileSync(filepath, {
-			//这里的编译信息要取自根目录的.babelrc的设定
+			//这里的编译信息要取自根目录的.babelrc或package.json的设定
 			presets: ['es2015'],
 		}).code;
 		fs.writeFileSync(path.join(dest, file_name), file_content);
@@ -32,7 +41,10 @@ function makeBabel(){
 }
 
 //监控文件变化
-chokidar.watch(src_files, {}).on('all', (event, filepath) => {
-	makeBabel(filepath);
-});
+var all_files = express_obj.src.concat(task_obj.src);
+/*chokidar.watch(all_files, {}).on('all', (event, filepath) => {
+	makeBabel(express_obj);
+	makeBabel(task_obj);
+});*/
+console.log(all_files);
 

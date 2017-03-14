@@ -1,9 +1,9 @@
 import path from 'path';
 
 //根目录的绝对路径
-var root = path.join(__dirname, '../..');
+const root = path.join(__dirname, '../..');
 
-var config = {
+const config = {
 	controllers: path.join(root, 'controllers'),
 	views: path.join(root, 'views'),
 	pages: path.join(root, 'views', 'pages'),
