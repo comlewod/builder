@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel-node ./transform/build",
+    "transform": "babel-node ./transform/build",
     "start": "node-dev ./bin/www",
 	"pack": "babel-node ./task/dest/index"
   },
