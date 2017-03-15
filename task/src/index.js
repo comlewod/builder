@@ -7,9 +7,9 @@ import config from './config';
 //获取页面主文件
 var pages = glob.sync(path.join(config.root, 'views', '*', 'index.html'));
 
-var replace_txt = [
-	[/{widget ([\s\S]*?)}/mgi, '<% include($1) %>'],
-];
+var replace_txt = {
+	widget: [/{widget ([\s\S]*?)}$/mgi, '<% include($1) %>'],
+};
 
 pages.forEach(filepath => {
 	let file_content = fs.readFileSync(filepath, {encoding: 'utf8'});
@@ -46,11 +46,23 @@ function pathAnalysis(filepath){
 
 //获取所依赖的widget
 function getWidget(filepath){
+	let dir = path.parse(filepath).dir;
+	let page_name = path.relative(config.views, dir); 
 	var file_content = fs.readFileSync(filepath, {encoding: 'utf8'});
-	var matches = file_content.match(replace_txt[0][0]);
+	var matches = file_content.match(replace_txt.widget[0]);
 	if( matches ){
 		matches.forEach(mat => {
-			console.log(mat);
+			
 		});
 	}
+	file_content = file_content.replace(replace_txt.widget[0], function($0, $1){
+		let arr = $1.split('=>');
+		let widget_name = arr[0].trim();
+		let obj = arr[1].trim();
+		let file_name = page_name + '_' + widget_name + '.html';
+		return '<% include("' + file_name + '", ' + obj + ') %>';
+	});
+	console.log(file_content);
 }
+
+
