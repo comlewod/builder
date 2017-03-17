@@ -25,6 +25,7 @@ function makePages(){
 	app.engine('.html', require('ejs').__express);
 	app.set('views', path.join(ROOT_PATH, 'views'));
 	app.set('view engine', 'html');
+	app.set('layout', path.join(ROOT_PATH, 'output', 'layout'));
 	//使用layout，默认在view/layout
 	app.use(expressLayout);
 }
