@@ -4,7 +4,7 @@ import config from './config';
 import replaceContent from './replaceContent';
 
 /*
- *	获取未被记录widget的文本内容	
+ *	获取未被记录widget里所依赖的其它widget
  *	origin_widget: 未被记录的widget
  *	page_name: 页面名称 
  */

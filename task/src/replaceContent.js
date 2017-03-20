@@ -43,7 +43,7 @@ function replaceContent(filepath, page_name){
 	}
 	//这里可以继续替换换其他正则内容
 
-	//在output里生成该组件文件
+	//在output/widgets里生成该组件文件
 	let file_name = path.parse(filepath).name;
 	fs.writeFileSync(path.join(config.output, 'widgets', page_name + '_' + file_name + '.html'), new_content);
 	
