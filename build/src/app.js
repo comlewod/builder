@@ -1,5 +1,4 @@
 import express from 'express';
-//import Ejs from 'ejs';
 import expressLayout from 'express-ejs-layouts';
 import config from './config';
 import fs from 'fs-extra';
@@ -23,10 +22,9 @@ fs.readdir(config.controllers, function(err, files){
 function makePages(){
 	//将html文件用ejs模板引擎解析
 	app.engine('.html', require('ejs').__express);
-	app.set('views', path.join(ROOT_PATH, 'views'));
+	app.set('views', path.join(ROOT_PATH, 'output'));
 	app.set('view engine', 'html');
-	app.set('layout', path.join(ROOT_PATH, 'output', 'layout'));
-	//使用layout，默认在view/layout
+	//app.set('layout', path.join(config.output));
 	app.use(expressLayout);
 }
 
@@ -43,3 +41,4 @@ function addRouter(arr){
 }
 
 module.exports = app;
+//export default app;
