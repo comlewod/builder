@@ -36,7 +36,8 @@ function replaceContent(filepath, page_name){
 			}
 
 			let file_name = page_name + '_' + widget_name + '.html';
-			return '<% include("./' + file_name + '"' + params_str + ') %>';
+			//console.log(file_name);
+			return '<% include("' + file_name + '"' + params_str + ') %>';
 		});
 	} else {
 		new_content = file_content;
@@ -45,7 +46,10 @@ function replaceContent(filepath, page_name){
 
 	//在output/widgets里生成该组件文件
 	let file_name = path.parse(filepath).name;
-	fs.writeFileSync(path.join(config.output, 'widgets', page_name + '_' + file_name + '.html'), new_content);
+	console.log(page_name, 111, file_name);
+	console.log(path.join(config.output, 'widgets', page_name + '_' + file_name + '.html'));
+	let dest = path.join(config.output, 'widgets', page_name + '_' + file_name + '.html')
+	//fs.writeFileSync(dest, new_content);
 	
 	//返回没有被记录的widget
 	return content_widget;

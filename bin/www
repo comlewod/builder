@@ -4,5 +4,5 @@ var app = require('../build/dest/app');
 var http = require('http');
 
 //接受app的中间件处理，创建http服务
-http.createServer(app).listen(3000);
+http.createServer(app).listen(5000, 'n0o0n.com');
 

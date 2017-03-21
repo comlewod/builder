@@ -40,8 +40,10 @@ chokidar.watch(config.views, {
 }).on('all', (event, filepath) => {
 	let dir = path.parse(filepath).dir;
 	if( dir == config.views ){
+		console.log('layout 改变');
 		packLayout(filepath);
 	} else {
+		console.log('\n==========widget 改变============');
 		packPages(filepath);
 	}
 });
@@ -58,6 +60,7 @@ function packPages(filepath){
 	let page_name = path.relative(config.views, dir); 
 	page_widget[page_name] = {};
 	//主页面文件index.html所依赖的widget
+	console.log(22222, page_name);
 	let content_widget = replaceContent(filepath, page_name);
 	if( content_widget ){
 		getWidget(content_widget, page_name);
