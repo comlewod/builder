@@ -18,13 +18,14 @@ fs.readdir(config.controllers, function(err, files){
 	}
 });
 
+
 //页面渲染
 function makePages(){
 	//将html文件用ejs模板引擎解析
 	app.engine('.html', require('ejs').__express);
 	app.set('views', path.join(ROOT_PATH, 'output'));
 	app.set('view engine', 'html');
-	//app.set('layout', path.join(config.output));
+	//app.set('layout', config.output);
 	app.use(expressLayout);
 }
 

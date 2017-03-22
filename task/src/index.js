@@ -38,29 +38,38 @@ chokidar.watch(config.views, {
 	ignored: /(^|[\/\\])\../,
 	ignoreInitial: true,
 }).on('all', (event, filepath) => {
-	let dir = path.parse(filepath).dir;
-	if( dir == config.views ){
-		console.log('layout 改变');
+	if( ~layouts.indexOf(filepath) ){
 		packLayout(filepath);
 	} else {
-		console.log('\n==========widget 改变============');
 		packPages(filepath);
 	}
 });
 
 
 function packLayout(filepath){
+	console.log('\n===============layout 改变============');
 	let name = path.parse(filepath).name;
 	let content = fs.readFileSync(filepath, {encoding: 'utf8'});	
 	fs.writeFileSync(path.join(config.output, name + '.html'), content);
 }
 function packPages(filepath){
 	let dir = path.parse(filepath).dir;
-	//页面名称
-	let page_name = path.relative(config.views, dir); 
+
+	if( ~pages.indexOf(filepath) ){
+		//页面名称
+		console.log('\n========== page 改变 ============');
+		var page_name = path.relative(config.views, dir);
+
+	} else if( ~widgets.indexOf(filepath) ){
+		console.log('\n========== widget 改变 ============');
+		var page_name = path.relative(config.views, path.join(dir, '..'));
+	} else {
+		console.log('\n========== 无效文件 ============');
+		return;
+	}
+
 	page_widget[page_name] = {};
 	//主页面文件index.html所依赖的widget
-	console.log(22222, page_name);
 	let content_widget = replaceContent(filepath, page_name);
 	if( content_widget ){
 		getWidget(content_widget, page_name);

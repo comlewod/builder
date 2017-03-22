@@ -1,4 +1,5 @@
-./npm-debug.log
+npm-debug.log
 /node_modules
 /build/dest
 /task/dest
+/output

@@ -4,7 +4,7 @@ import config from './config';
 import tempReg from './templateReg';
 
 /*
- *	替换widget依赖和记录widget
+ *	替换widget依赖和记录widget，同时生成页面文件 和 widget文件
  *	filepath:	页面主文件index.html 和 widget文件比如nav.html
  *	page_name:	页面名称
  */
@@ -37,7 +37,7 @@ function replaceContent(filepath, page_name){
 
 			let file_name = page_name + '_' + widget_name + '.html';
 			//console.log(file_name);
-			return '<% include("' + file_name + '"' + params_str + ') %>';
+			return '<%- include("' + file_name + '"' + params_str + ') %>';
 		});
 	} else {
 		new_content = file_content;
@@ -46,10 +46,8 @@ function replaceContent(filepath, page_name){
 
 	//在output/widgets里生成该组件文件
 	let file_name = path.parse(filepath).name;
-	console.log(page_name, 111, file_name);
-	console.log(path.join(config.output, 'widgets', page_name + '_' + file_name + '.html'));
 	let dest = path.join(config.output, 'widgets', page_name + '_' + file_name + '.html')
-	//fs.writeFileSync(dest, new_content);
+	fs.writeFileSync(dest, new_content);
 	
 	//返回没有被记录的widget
 	return content_widget;
