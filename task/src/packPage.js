@@ -5,11 +5,11 @@ import getWidget from './getWidget';
 import replaceContent from './replaceContent';
 
 /*
- *	打包页面主文件index.html和组件文件比如：nav.html
+ *	单页面打包，主要对主文件index.html和组件文件比如：nav.html
  *	filepath: []
  */
 
-function packPages(filepath){
+function packPage(filepath){
 	let dir = path.parse(filepath).dir;
 
 	if( ~config.pages.indexOf(filepath) ){
@@ -34,4 +34,4 @@ function packPages(filepath){
 	}
 }
 
-export default packPages;
+export default packPage;

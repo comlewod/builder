@@ -8,9 +8,11 @@ import getWidget from './getWidget';
 import concatContent from './concatContent';
 import tempReg from './templateReg';
 import packLayout from './packLayout';
-import packPages from './packPages';
+import packPage from './packPage';
 
 //获取文件内容 => 文本内容替换 => 记录组件，组件内容替换 => 生成output文件
+//先打包单页面单组件图片，再将新图片地址替换到html、less、js
+//再把上一步的单页面的所有组件的less、js合并编译
 
 //记录页面所需要的widget
 global.page_widget = {};
@@ -30,7 +32,7 @@ config.layouts.forEach(filepath => {
 
 //记录页面所需要的widget并将页面文件打包至output
 config.pages.forEach(filepath => {
-	packPages(filepath);
+	packPage(filepath);
 });
 
 for( let page_name in page_widget ){
@@ -44,7 +46,6 @@ for( let page_name in page_widget ){
 
 	let js_content = concatContent(js_files, page_name);
 	let less_content = concatContent(less_files, page_name);
-	console.log(less_content);
 }
 
 chokidar.watch(config.views, {
@@ -54,7 +55,7 @@ chokidar.watch(config.views, {
 	if( ~config.layouts.indexOf(filepath) ){
 		packLayout(filepath);
 	} else {
-		packPages(filepath);
+		packPage(filepath);
 	}
 });
 

@@ -1,4 +1,5 @@
 import path from 'path';
+import glob from 'glob';
 import fs from 'fs-extra';
 import config from './config';
 import tempReg from './templateReg';
@@ -13,8 +14,14 @@ var widget_reg = tempReg.widget[0];
 
 function replaceContent(filepath, page_name){
 	let content_widget = null;
+	let dir = path.parse(filepath).dir;
 	let file_content = fs.readFileSync(filepath, {encoding: 'utf8'});
 	let new_content = '';
+
+	//获取该组件所有图片
+	let all_img = glob.sync(path.join(dir, '*.+(jpeg|jpg|png|gif)'));
+	if( all_img.length ){
+	}
 
 	//判断文本内容是否有widget引用
 	if( widget_reg.test(file_content) ){
