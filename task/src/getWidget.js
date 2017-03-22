@@ -5,12 +5,12 @@ import replaceContent from './replaceContent';
 
 /*
  *	获取未被记录widget里所依赖的其它widget
- *	origin_widget: 未被记录的widget
+ *	origin_widget: 未被记录的widget，然后从这些widget文件里查询所依赖的widget
  *	page_name: 页面名称 
  */
 
 function getWidget(origin_widget, page_name){
-	for( let widget_name in origin_widget ){
+	origin_widget.forEach(widget_name => {
 		let filepath = path.join(config.views, page_name, widget_name, widget_name + '.html');
 		let is_exist = fs.existsSync(filepath);
 		//该widget文件是否已创建
@@ -23,7 +23,7 @@ function getWidget(origin_widget, page_name){
 		} else {
 			console.log(filepath + ' 未被创建');
 		}
-	}
+	});
 }
 
 export default getWidget;

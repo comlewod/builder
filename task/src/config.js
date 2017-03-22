@@ -1,11 +1,19 @@
-import path from 'path';
 import fs from 'fs-extra';
+import glob from 'glob';
+import path from 'path';
 
 const ROOT_PATH = process.cwd();
-var dir = {
+var config = {
 	root: ROOT_PATH,
 	views: path.join(ROOT_PATH, 'views'),
 	output: path.join(ROOT_PATH, 'output'),
 };
 
-module.exports = dir;
+//获取所有layout
+config.layouts = glob.sync(path.join(config.views, '*.html'));
+//获取页面主文件
+config.pages = glob.sync(path.join(config.views, '*', 'index.html'));
+//获取所有widget
+config.widgets = glob.sync(path.join(config.views, '*', '*', '*.html'));
+
+export default config;

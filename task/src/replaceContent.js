@@ -27,16 +27,14 @@ function replaceContent(filepath, page_name){
 			}
 
 			//如果该widget没有被记录
-			if( !page_widget[page_name][widget_name] ){
-				page_widget[page_name][widget_name] = true;
+			if( !~page_widget[page_name].indexOf(widget_name) ){
+				page_widget[page_name].push(widget_name);
 
-				!content_widget && (content_widget = {});
-				content_widget[widget_name] = true;
-
+				!content_widget && (content_widget = []);
+				content_widget.push(widget_name);
 			}
 
 			let file_name = page_name + '_' + widget_name + '.html';
-			//console.log(file_name);
 			return '<%- include("' + file_name + '"' + params_str + ') %>';
 		});
 	} else {
