@@ -6,12 +6,14 @@
   "scripts": {
     "transform": "babel-node ./transform/build",
     "start": "node-dev ./bin/www",
-	"pack": "babel-node ./task/dest/index"
+    "pack": "babel-node ./task/dest/index"
   },
   "author": "",
   "license": "ISC",
   "babel": {
-	"presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
@@ -21,9 +23,13 @@
     "babel-cli": "^6.24.0",
     "chokidar": "^1.6.1",
     "ejs": "^2.5.6",
+    "express": "^4.14.0",
     "express-ejs-layouts": "^2.2.0",
     "fs-extra": "^2.0.0",
     "glob": "^7.1.1",
-    "express": "^4.14.0"
+    "imagemin": "^5.2.2",
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-optipng": "^5.2.1"
   }
 }

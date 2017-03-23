@@ -1,8 +1,10 @@
 import path from 'path';
 import glob from 'glob';
 import fs from 'fs-extra';
+
 import config from './config';
 import tempReg from './templateReg';
+import packImage from './packImage';
 
 /*
  *	替换widget依赖和记录widget，同时生成页面文件 和 widget文件
@@ -18,10 +20,10 @@ function replaceContent(filepath, page_name){
 	let file_content = fs.readFileSync(filepath, {encoding: 'utf8'});
 	let new_content = '';
 
-	//获取该组件所有图片
-	let all_img = glob.sync(path.join(dir, '*.+(jpeg|jpg|png|gif)'));
-	if( all_img.length ){
-	}
+	//获取和打包该组件所有图片
+	let img_arr = glob.sync(path.join(dir, '*.+(jpeg|jpg|png|gif)'));
+	packImage(img_arr);
+	
 
 	//判断文本内容是否有widget引用
 	if( widget_reg.test(file_content) ){

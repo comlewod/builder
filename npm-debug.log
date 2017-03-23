@@ -2,20 +2,20 @@
 1 verbose cli [ '/home/shein/.nvm/versions/node/v6.9.1/bin/node',
 1 verbose cli   '/home/shein/.nvm/versions/node/v6.9.1/bin/npm',
 1 verbose cli   'run',
-1 verbose cli   'pack' ]
+1 verbose cli   'transform' ]
 2 info using npm@3.10.8
 3 info using node@v6.9.1
-4 verbose run-script [ 'prepack', 'pack', 'postpack' ]
-5 info lifecycle express_demo@1.0.0~prepack: express_demo@1.0.0
-6 silly lifecycle express_demo@1.0.0~prepack: no script for prepack, continuing
-7 info lifecycle express_demo@1.0.0~pack: express_demo@1.0.0
-8 verbose lifecycle express_demo@1.0.0~pack: unsafe-perm in lifecycle true
-9 verbose lifecycle express_demo@1.0.0~pack: PATH: /home/shein/.nvm/versions/node/v6.9.1/lib/node_modules/npm/bin/node-gyp-bin:/home/shein/program/document/demo/node_modules/.bin:/home/shein/bin:/home/shein/.local/bin:/home/shein/.nvm/versions/node/v6.9.1/bin:/home/shein/bin:/home/shein/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
-10 verbose lifecycle express_demo@1.0.0~pack: CWD: /home/shein/program/document/demo
-11 silly lifecycle express_demo@1.0.0~pack: Args: [ '-c', 'babel-node ./task/dest/index' ]
-12 silly lifecycle express_demo@1.0.0~pack: Returned: code: 1  signal: null
-13 info lifecycle express_demo@1.0.0~pack: Failed to exec pack script
-14 verbose stack Error: express_demo@1.0.0 pack: `babel-node ./task/dest/index`
+4 verbose run-script [ 'pretransform', 'transform', 'posttransform' ]
+5 info lifecycle express_demo@1.0.0~pretransform: express_demo@1.0.0
+6 silly lifecycle express_demo@1.0.0~pretransform: no script for pretransform, continuing
+7 info lifecycle express_demo@1.0.0~transform: express_demo@1.0.0
+8 verbose lifecycle express_demo@1.0.0~transform: unsafe-perm in lifecycle true
+9 verbose lifecycle express_demo@1.0.0~transform: PATH: /home/shein/.nvm/versions/node/v6.9.1/lib/node_modules/npm/bin/node-gyp-bin:/home/shein/program/document/demo/node_modules/.bin:/home/shein/bin:/home/shein/.local/bin:/home/shein/.nvm/versions/node/v6.9.1/bin:/home/shein/bin:/home/shein/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+10 verbose lifecycle express_demo@1.0.0~transform: CWD: /home/shein/program/document/demo
+11 silly lifecycle express_demo@1.0.0~transform: Args: [ '-c', 'babel-node ./transform/build' ]
+12 silly lifecycle express_demo@1.0.0~transform: Returned: code: 1  signal: null
+13 info lifecycle express_demo@1.0.0~transform: Failed to exec transform script
+14 verbose stack Error: express_demo@1.0.0 transform: `babel-node ./transform/build`
 14 verbose stack Exit status 1
 14 verbose stack     at EventEmitter.<anonymous> (/home/shein/.nvm/versions/node/v6.9.1/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
 14 verbose stack     at emitTwo (events.js:106:13)
@@ -28,18 +28,18 @@
 15 verbose pkgid express_demo@1.0.0
 16 verbose cwd /home/shein/program/document/demo
 17 error Linux 4.8.0-41-generic
-18 error argv "/home/shein/.nvm/versions/node/v6.9.1/bin/node" "/home/shein/.nvm/versions/node/v6.9.1/bin/npm" "run" "pack"
+18 error argv "/home/shein/.nvm/versions/node/v6.9.1/bin/node" "/home/shein/.nvm/versions/node/v6.9.1/bin/npm" "run" "transform"
 19 error node v6.9.1
 20 error npm  v3.10.8
 21 error code ELIFECYCLE
-22 error express_demo@1.0.0 pack: `babel-node ./task/dest/index`
+22 error express_demo@1.0.0 transform: `babel-node ./transform/build`
 22 error Exit status 1
-23 error Failed at the express_demo@1.0.0 pack script 'babel-node ./task/dest/index'.
+23 error Failed at the express_demo@1.0.0 transform script 'babel-node ./transform/build'.
 23 error Make sure you have the latest version of node.js and npm installed.
 23 error If you do, this is most likely a problem with the express_demo package,
 23 error not with npm itself.
 23 error Tell the author that this fails on your system:
-23 error     babel-node ./task/dest/index
+23 error     babel-node ./transform/build
 23 error You can get information on how to open an issue for this project with:
 23 error     npm bugs express_demo
 23 error Or if that isn't available, you can get their info via:
