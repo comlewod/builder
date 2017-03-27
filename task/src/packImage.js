@@ -18,7 +18,7 @@ function packImage(img_arr){
 				//为了获取图片的内容，使用buffer方式
 				let new_content = file_content;
 				try {
-					new_content = imagemin.buffer(file_content, {
+					new_content = await imagemin.buffer(file_content, {
 						plugins: [
 							imageJpg(),
 							imagePng({optimizationLevel: 2}),

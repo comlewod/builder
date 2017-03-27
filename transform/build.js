@@ -49,7 +49,7 @@ function makeBabel(obj){
 		//转化
 		var file_content = babel.transformFileSync(filepath, {
 			//这里的编译信息要取自根目录的.babelrc或package.json的设定
-			presets: ['es2015'],
+			presets: ['latest'],
 		}).code;
 		fs.writeFileSync(path.join(dest, file_name), file_content);
 	});

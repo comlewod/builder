@@ -6,6 +6,7 @@ const ROOT_PATH = process.cwd();
 var config = {
 	root: ROOT_PATH,
 	views: path.join(ROOT_PATH, 'views'),
+	statics: path.join(ROOT_PATH, 'statics'),
 	output: path.join(ROOT_PATH, 'output'),
 };
 
